@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <record id="view_user_tree" model="ir.ui.view">
+        <field name="name">users.tree</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <tree string="Clients">
+                <field name="name" />
+                <field name="login" />
+                <field name="lang" />
+                <field name="login_date" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_user_kanban" model="ir.ui.view">
+        <field name="name">users.kanban</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="login"/>
+                <field name="lang"/>
+                <field name="active"/>
+                <field name="login_date"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img alt="Avatar" t-att-src="kanban_image('res.users', 'avatar_128', record.id.raw_value)"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <ul>
+                                    <li class="text-success float-right mb4" t-if="record.active.raw_value"><i class="fa fa-circle" role="img" aria-label="Ok" title="Ok"/></li>
+                                    <li class="text-danger float-right mb4" t-if="!record.active.raw_value"><i class="fa fa-circle" role="img" aria-label="Invalid" title="Invalid"/></li>
+                                    <li class="mb4">
+                                        <strong><field name="name"/></strong>
+                                    </li>
+                                    <li class="badge badge-pill float-right mb4" t-if="record.lang.raw_value"><field name="lang"/></li>
+                                    <li class="mb4" t-if="record.login.raw_value" title="Login"><i class="fa fa-envelope" role="img" aria-label="Login"/> <field name="login"/></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="view_user_form" model="ir.ui.view">
+        <field name="name">users.form</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <form string="Users">
+                <style> .nav-tabs .nav-item a[href="#notebook_page_33"] {display: none !important;}</style>
+                <header>
+                </header>
+                <sheet>
+                    <field name="avatar_128" invisible="1" />
+                    <field name="image_1920" widget="image" class="oe_avatar"
+                        options="{&quot;preview_image&quot;: &quot;avatar_128&quot;}" />
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" placeholder="e.g. John Doe" required="1" />
+                        </h1>
+                        <field name="email" invisible="1" />
+
+                        <label for="login" string="Email Address" />
+                        <h1>
+                            <field name="login" placeholder="e.g. email@yourcompany.com" />
+                        </h1>
+
+                        <label for="password" string="Password" />
+                        <h1>
+                            <field name="password" placeholder="*******"
+                                class="o_field_char o_field_widget o_quick_editable o_input o_required_modifier" />
+                        </h1>
+
+
+                        <footer>
+
+                        </footer>
+                    </div>
+                    <notebook colspan="4">
+                        <page name="access_rights" string="Access Rights" invisible="1">
+                            <field name="groups_id" />
+                        </page>
+                        <page string="Preferences" name="preferences">
+                            <group>
+                                <group string="Localization" name="preferences">
+
+                                    <field name="active" invisible="1" />
+                                    <label for="lang" />
+                                    <div class="o_row">
+                                        <field name="lang" required="1" />
+                                    </div>
+                                    <field name="tz" widget="timezone_mismatch"
+                                        options="{'tz_offset_field': 'tz_offset'}" />
+                                    <field name="tz_offset" invisible="1" />
+                                </group>
+
+                                <group string="Menus Customization" groups="base.group_no_one"
+                                    invisible="1">
+                                    <field name="action_id" />
+                                </group>
+                            </group>
+
+                            <group invisible="1">
+                                <field name="signature"
+                                    options="{'style-inline': true, 'codeview': true}" />
+                            </group>
+                        </page>
+
+
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="menu_action_clients" model="ir.actions.act_window">
+        <field name="name">Clients</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">form,tree</field>
+        <field name="domain">[('accesses_count', '=','10')]</field>
+        <field name="view_id" ref="view_user_tree" />
+    </record>
+
+    <menuitem id="menu_clients"
+        name="Clients"
+        parent="menu_bcs_root"
+        action="menu_action_clients"
+        sequence="0" />
+</odoo>

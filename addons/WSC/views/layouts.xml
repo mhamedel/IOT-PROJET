@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="layouts" name="Custom home">
+
+        <html lang="en" dir="ltr">
+            <head>
+                <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+                <!-- Perfect Scrollbar -->
+                <link type="text/css"
+                    href="/WSC/static/assets/vendor/perfect-scrollbar.css"
+                    rel="stylesheet" />
+                <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                <!-- Material Design Icons -->
+                <link type="text/css"
+                    href="/WSC/static/assets/css/material-icons.css"
+                    rel="stylesheet" />
+
+                <!-- Font Awesome Icons -->
+                <link type="text/css"
+                    href="/WSC/static/assets/css/fontawesome.css"
+                    rel="stylesheet" />
+
+                <!-- Preloader -->
+                <link type="text/css"
+                    href="/WSC/static/assets/vendor/spinkit.css"
+                    rel="stylesheet" />
+                <link type="text/css"
+                    href="/WSC/static/assets/css/preloader.css"
+                    rel="stylesheet" />
+
+                <!-- App CSS -->
+                <link type="text/css"
+                    href="/WSC/static/assets/css/app.css"
+                    rel="stylesheet" />
+
+                <!-- Dark Mode CSS (optional) -->
+                <link type="text/css"
+                    href="/WSC/static/assets/css/dark-mode.css"
+                    rel="stylesheet" />
+
+                <link
+                    href="https://fonts.googleapis.com/css?family=Lato:400,700%7COswald:300,400,500,700%7CRoboto:400,500%7CExo+2:600&amp;display=swap"
+                    rel="stylesheet" />
+                <style>
+                    body {
+                    overflow: hidden;
+                    }
+                    .canvasjs-chart-credit{
+                        visibility: hidden;
+                    }
+
+                </style>
+                <script type="text/javascript" src="/WSC/static/src/js/6T_char.js"></script>
+                
+            </head>
+            <body class="layout-app layout-sticky-subnav">
+
+                <div class="preloader">
+                    <div class="sk-chase">
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                    </div>
+
+                </div>
+
+                <div class="mdk-drawer-layout js-mdk-drawer-layout" data-responsive-width="992px">
+
+                    <!-- // END drawer-layout__content -->
+                    <style>
+                        .mdk-drawer-layout__content {
+                        overflow-y: auto; /* Ajoute la barre de défilement verticale uniquement
+                        lorsque nécessaire */
+                        max-height: 100%; /* Définissez une hauteur maximale pour la zone de
+                        défilement */
+                        }
+                    </style>
+
+                    <div class="mdk-drawer-layout__content page-content"
+                        style="transform: translate3d(0px, 0px, 0px);">
+
+                        <!-- Header -->
+
+                        <div
+                            class="navbar navbar-expand navbar-shadow px-0 pl-lg-16pt navbar-light bg-body"
+                            id="default-navbar" data-primary="">
+
+                            <!-- Navbar toggler -->
+                            <button class="navbar-toggler d-block d-lg-none rounded-0" type="button"
+                                data-toggle="sidebar">
+                                <span class="material-icons">menu</span>
+                            </button>
+
+                            <!-- Navbar Brand -->
+                            <a href="#" class="navbar-brand mr-16pt d-lg-none">
+                                <img class="navbar-brand-icon mr-0 mr-lg-8pt"
+                                    src="/WSC/static/assets/description/logo.png"
+                                    width="32"
+                                    alt="BCS"> </img>
+                            </a>
+                            <div class="flex"></div>
+
+                            <div class="nav navbar-nav flex-nowrap d-flex ml-0 mr-16pt">
+                                <div class="nav-item dropdown d-none d-sm-flex">
+                                    <a href="#"
+                                        class="nav-link d-flex align-items-center dropdown-toggle"
+                                        data-toggle="dropdown">
+
+                                        <img width="32" height="32" class="rounded-circle mr-8pt"
+                                            t-attf-src="/web/image?model=res.users&amp;id={{ user.id }}&amp;field=avatar_128&amp;"
+                                            t-attf-alt="Photo de {{ user.name }}" />
+                                        <span class="flex d-flex flex-column mr-8pt">
+                                            <span class="navbar-text-100">
+                                                <t t-esc="user.name" />
+                                            </span>
+                                        </span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <div class="dropdown-header">
+                                            <strong>Account</strong>
+                                        </div>
+                                        <a class="dropdown-item" href="#">Edit
+                                            Account</a>
+                                        <a class="dropdown-item" href="/web/session/logout">Logout</a>
+                                    </div>
+                                </div>
+
+                                <!-- Notifications dropdown -->
+                                <div class="nav-item ml-16pt dropdown dropdown-notifications">
+                                    <button class="nav-link btn-flush dropdown-toggle" type="button"
+                                        data-toggle="dropdown"
+                                        data-dropdown-disable-document-scroll="" data-caret="false">
+                                        <i class="material-icons">notifications</i>
+                                        <span
+                                            class="badge badge-notifications badge-accent-dodger-blue">
+                                            2</span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <div data-perfect-scrollbar="" class="position-relative ps">
+                                            <div class="dropdown-header">
+                                                <strong>System notifications</strong>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- // END Notifications dropdown -->
+
+                                <!-- Notifications dropdown -->
+                                <div class="nav-item ml-16pt dropdown dropdown-notifications">
+                                    <button class="nav-link btn-flush dropdown-toggle" type="button"
+                                        data-toggle="dropdown"
+                                        data-dropdown-disable-document-scroll="" data-caret="false">
+                                        <i class="material-icons icon-24pt">mail_outline</i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <div data-perfect-scrollbar="" class="position-relative ps">
+                                            <div class="dropdown-header">
+                                                <strong>Messages</strong>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- // END Notifications dropdown -->
+                            </div>
+
+
+                        </div>
+
+                        <!-- // END Header -->
+
+
+                        <!-- contente body -->
+
+                        <div class="container-fluid page__container page-section pb-0">
+                            <h1 class="h2 mb-0">Charts</h1>
+                            <ol class="breadcrumb m-0 p-0 " >
+                                <li class="breadcrumb-item" id="label_farm"></li>
+                                <li class="breadcrumb-item" id="label_zone"></li>
+                                <!-- <li class="breadcrumb-item active" id="label_farm">Charts</li> -->
+                            </ol>
+                        </div>
+
+                        <div class="container-fluid page__container page-section">
+
+                            <div class="row mb-32pt" id="chars" style="min-height: 300px;">
+
+
+                                
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="js-fix-footer footer border-top-2 ">
+
+                            <div class="  bg-primary-pickled-bluewood" style="padding-bottom: 0px;">
+                                <div class="container-fluid page__container">
+                                    <div
+                                        class="rounded page-section py-lg-32pt px-16pt px-lg-24pt bg-primary-pickled-bluewood">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-4 mb-24pt mb-md-0">
+                                                <p class="text-white-70 mb-8pt">
+                                                    <strong>Follow us</strong>
+                                                </p>
+                                                <nav class="nav nav-links nav--flush">
+                                                    <a href="#" class="nav-link mr-8pt">
+                                                        <img
+                                                            src="/WSC/static/icon/footer/facebook.png"
+                                                            width="24" height="24" alt="Facebook"
+                                                            loading="lazy" />
+                                                    </a>
+                                                    <a href="#" class="nav-link mr-8pt">
+                                                        <img
+                                                            src="/WSC/static/icon/footer/twitter.png"
+                                                            width="24" height="24" alt="Twitter"
+                                                            loading="lazy" />
+                                                    </a>
+                                                </nav>
+                                            </div>
+                                            <div
+                                                class="col-md-6 col-sm-4 mb-24pt mb-md-0 d-flex align-items-center">
+                                                <a href="#" class="btn btn-outline-white">English <span
+                                                        class="icon--right material-icons">
+                                                    arrow_drop_down</span></a>
+                                            </div>
+                                            <div class="col-md-4 text-md-right">
+                                                <br />
+                                                <p class="text-white-50 small mb-0">Copyright 2023 ©
+                                                    All rights reserved.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- drawer -->
+                    <div class="mdk-drawer js-mdk-drawer"
+                        id="default-drawer">
+                        <div class="mdk-drawer__content">
+                            <div class="sidebar sidebar-dark sidebar-left"
+                                data-perfect-scrollbar="true"
+                            >
+
+                                <a href="/"
+                                    class="sidebar-brand ">
+                                    <img style="width: 40%; height: 70%;"
+                                        src="/WSC/static/description/logo.png"
+                                        alt="LOGO" loading="lazy"></img>
+                                    <span> IRRIGATION</span>
+                                </a>
+
+                                <div class="sidebar-account mx-16pt mb-16pt dropdown">
+                                    <a href="#"
+                                        class="nav-link d-flex align-items-center dropdown-toggle"
+                                        data-toggle="dropdown"
+                                        data-caret="false">
+                                        <img height="32" width="32" class="rounded-circle mr-8pt"
+                                            t-attf-src="/web/image?model=res.users&amp;id={{ user.id }}&amp;field=avatar_128&amp;"
+                                            t-attf-alt="Photo de {{ user.name }}" />
+                                        <span class="flex d-flex flex-column mr-8pt">
+                                            <span class="text-black-100">
+                                                <t t-esc="user.name" />
+                                            </span>
+                                        </span>
+                                        <i class="material-icons text-black-20 icon-16pt">
+                                            keyboard_arrow_down</i>
+                                    </a>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-full dropdown-menu-caret-center">
+                                        <div class="dropdown-header">
+                                            <strong>Account</strong>
+                                        </div>
+                                        <a class="dropdown-item"
+                                            href="#">Edit Account</a>
+                                        <a class="dropdown-item"
+                                            href="/web/session/logout">Logout</a>
+
+
+                                    </div>
+                                </div>
+
+
+                                <div class="sidebar-heading">fFarmers</div>
+
+                                <ul class="sidebar-menu" id="farms">
+                                    <li class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button js-sidebar-collapse"
+                                            data-toggle="collapse" >
+                                            <span
+                                                class="material-icons sidebar-menu-icon sidebar-menu-icon--left">
+                                            donut_large</span> Farms <span
+                                                class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        
+                                        <t t-foreach="result" t-as="farm_info">
+                                            <ul class="sidebar-submenu collapse sm-indent"
+                                               
+                                                t-attf-data-farm-id="{{ farm_info['farm_id'] }}">
+                                                <li class="sidebar-menu-item"
+                                                   >
+                                                    <span class="sidebar-menu-button">
+                                                        <span class="sidebar-menu-text">
+                                                            <t t-esc="farm_info['farm_label']" />
+                                                        </span>
+
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </t>
+                                    </li>
+                                </ul>
+
+                                <ul class="sidebar-menu" id="zones">
+                                    
+                                        
+                                      
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // END drawer -->
+                </div>
+                <!-- // END drawer-layout -->
+
+                <script type="text/javascript">
+                  
+                    $(window).on('load', function() {
+                        handleFarmClick(<t t-esc="first_farm_id"/>, '<t t-esc="first_farm_label"/>');
+                        setTimeout(function() {
+                            handleZoneClick(<t t-esc="first_zone_id"/>, '<t t-esc="first_zone_label"/>');
+                        }, 500);
+                        
+                    });
+                </script>
+            </body>
+
+        </html>
+    </template>
+</odoo>
